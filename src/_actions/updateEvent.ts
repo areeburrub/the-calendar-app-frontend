@@ -12,7 +12,7 @@ interface eventData  {
 export async function updateEvent(id:string,eventData:eventData) {
     try {
         const eventService = new EventService();
-        return eventService.updateEvent(id,eventData);
+        return await eventService.updateEvent(id,eventData);
     }catch (error:any){
         console.error("Error creating event:", error.message || error);
 
