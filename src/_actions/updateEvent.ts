@@ -13,7 +13,12 @@ export async function updateEvent(id:string,eventData:eventData) {
     try {
         const eventService = new EventService();
         return eventService.updateEvent(id,eventData);
-    }catch (e){
-        throw e
+    }catch (error:any){
+        console.error("Error creating event:", error.message || error);
+
+        return {
+            error: true,
+            message: error.message || "An unexpected error occurred while creating the event.",
+        };
     }
 }

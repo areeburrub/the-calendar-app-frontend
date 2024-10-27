@@ -31,10 +31,14 @@ export const CreateEventForm = () => {
 
             // Clerk Auth only works on server side so have to create an action for validation on server side
             const response = await createEvent(eventData)
+
+            if ("error" in response) throw new Error(response.message)
+
             toast({
                 title: "Event Created"
             })
-            router.push(`/events/${response.id}`)
+                router.push(`/events/${response?.id}`)
+
         } catch (error:any) {
             toast({
                 variant: "destructive",
@@ -42,8 +46,6 @@ export const CreateEventForm = () => {
                 description: error?.message,
                 action: <ToastAction onClick={()=>{router.push("/events")}} altText="Check Events">Check Events</ToastAction>
             })
-            console.error('Error creating event:', error);
-
         }
     };
     return(

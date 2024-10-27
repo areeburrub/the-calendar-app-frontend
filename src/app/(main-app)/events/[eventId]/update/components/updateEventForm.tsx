@@ -32,6 +32,9 @@ export const UpdateEventForm = ({event}:{event:EventResponse}) => {
 
             // Clerk Auth only works on server side so have to create an action for validation on server side
             const response = await updateEvent(event.id,eventData)
+
+            if ("error" in response) throw new Error(response.message)
+
             toast({
                 title: "Event Updated"
             })
