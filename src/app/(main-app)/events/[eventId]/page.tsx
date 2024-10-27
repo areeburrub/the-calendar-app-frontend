@@ -19,10 +19,10 @@ const SingleEventPage = async ({ params }: { params: { eventId: string } }) => {
             <div className={"flex flex-row justify-between w-full py-4"}>
                 <GoBackButton/>
                 <div className={"flex flex-row gap-4"}>
-                    <Link href={`/events/${event.id}/delete`}>
+                    <Link href={`/events/${event.id}/delete`} passHref={true}>
                         <Button variant={"destructive"}><Trash/>Delete</Button>
                     </Link>
-                    <Link href={`/events/${event.id}/update`}>
+                    <Link href={`/events/${event.id}/update`} passHref={true}>
                         <Button ><PenBoxIcon/>Edit</Button>
                     </Link>
                 </div>
