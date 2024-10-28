@@ -6,7 +6,7 @@ const EventsPage = async () => {
 
     const eventService = new EventService();
 
-    const allEvents = await eventService.getAllEvents();
+    const allEvents = await eventService.getUpcomingEvents();
 
     return (
         <div className={"p-4"}>
