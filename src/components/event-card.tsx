@@ -25,7 +25,7 @@ export function EventCardComponent({event}: {
     const formattedEndTime = format(new Date(event.endTime), 'h:mm a')
 
     return (
-            <Card className="w-full">
+            <Card className="w-full hover:shadow-md transition-shadow">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-2xl font-bold line-clamp-1">{event.title}</CardTitle>
                 <DropdownMenu>
