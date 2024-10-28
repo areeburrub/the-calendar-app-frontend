@@ -26,12 +26,7 @@ const items = [
         title: "Reminders",
         url: "/reminders",
         icon: Bell,
-    },
-    {
-        title: "Settings",
-        url: "/settings",
-        icon: Settings,
-    },
+    }
 ]
 
 export function AppSidebar() {

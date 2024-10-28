@@ -15,7 +15,7 @@ export const TimeInput = ({value, onChange}: { value: string, onChange: (value: 
     return (
         <div className="flex items-center space-x-2">
             <Input
-                type="number"
+                type="text"
                 min="1"
                 max="12"
                 value={hours}
@@ -23,11 +23,11 @@ export const TimeInput = ({value, onChange}: { value: string, onChange: (value: 
                     setHours(e.target.value);
                     handleChange(e.target.value, minutes, ampm);
                 }}
-                className="w-16"
+                className="w-14"
             />
             <span>:</span>
             <Input
-                type="number"
+                type="text"
                 min="0"
                 max="59"
                 value={minutes}
@@ -35,7 +35,7 @@ export const TimeInput = ({value, onChange}: { value: string, onChange: (value: 
                     setMinutes(e.target.value);
                     handleChange(hours, e.target.value, ampm);
                 }}
-                className="w-16"
+                className="w-14"
             />
             <select
                 value={ampm}
@@ -43,7 +43,7 @@ export const TimeInput = ({value, onChange}: { value: string, onChange: (value: 
                     setAmpm(e.target.value);
                     handleChange(hours, minutes, e.target.value);
                 }}
-                className="w-20"
+                className="w-18"
             >
                 <option value="AM">AM</option>
                 <option value="PM">PM</option>

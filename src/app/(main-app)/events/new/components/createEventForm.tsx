@@ -37,7 +37,8 @@ export const CreateEventForm = () => {
             toast({
                 title: "Event Created"
             })
-                router.push(`/events/${response?.id}`)
+
+            router.push(`/events/${response?.id}`)
 
         } catch (error:any) {
             toast({

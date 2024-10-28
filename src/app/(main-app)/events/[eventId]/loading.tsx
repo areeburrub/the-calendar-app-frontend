@@ -1,46 +1,52 @@
-import {Button} from "@/components/ui/button";
-import {ArrowLeft, PenBoxIcon, Trash} from "lucide-react";
-import Link from "next/link";
+import { Skeleton } from "@/components/ui/skeleton"
+import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
+import { Separator } from "@/components/ui/separator"
 
-
-const SingleEventLoadingPage = () => {
-
-    return(
-        <div className={"p-4 container max-w-screen-lg mx-auto"}>
-            <div className={"flex flex-row justify-between w-full py-4"}>
-                <Link href={"/events"}>
-                    <Button><ArrowLeft/>Back</Button>
-                </Link>
-                <div className={"flex flex-row gap-4"}>
-                    <Button variant={"destructive"}><Trash/>Delete</Button>
-                    <Button ><PenBoxIcon/>Edit</Button>
-                </div>
-            </div>
-            <div className={"flex justify-between items-center flex-row py-4"}>
-                <div>
-                    <h1 className={"text-4xl font-bold my-2"}>
-                        <div className={"w-full h-10 animate-pulse bg-gray-100 rounded"}></div>
-                    </h1>
-                    <p className="text-muted-foreground">
-                        <div className={"w-40 h-5 animate-pulse bg-gray-100 rounded"}></div>
-                    </p>
-                </div>
-                <div className={"w-24 hidden md:block border-2 border-black"}>
-                    <div
-                        className={"w-full p-1 uppercase text-white font-bold bg-red-500 text-xl flex items-center justify-center"}>
-                        <div className={"w-6 h-6 animate-pulse rounded"}></div>
+export default function Loading() {
+    return (
+        <div className="container max-w-3xl mx-auto py-8 px-4">
+            <Card className="shadow-lg">
+                <CardHeader className="flex flex-row justify-between items-center">
+                    <Skeleton className="h-10 w-24" />
+                    <div className="flex space-x-2">
+                        <Skeleton className="h-9 w-20" />
+                        <Skeleton className="h-9 w-20" />
                     </div>
-                    <div className={"w-24 h-16 flex items-center justify-center text-3xl font-bold"}>
-                        <div className={"w-6 h-6 animate-pulse bg-gray-100 rounded"}></div>
+                </CardHeader>
+                <CardContent className="space-y-6">
+                    <div className="flex justify-between items-start">
+                        <div className="space-y-2">
+                            <Skeleton className="h-9 w-64" />
+                            <Skeleton className="h-4 w-40" />
+                        </div>
+                        <div className="text-center">
+                            <Skeleton className="h-10 w-16" />
+                            <Skeleton className="h-16 w-16" />
+                        </div>
                     </div>
-                </div>
-            </div>
-            <h2 className={"font-bold text-xl"}>Event Description:</h2>
-            <p className={"whitespace-pre-wrap text-lg"}>
-                <div className={"w-full h-40 animate-pulse bg-gray-100 rounded"}></div>
-            </p>
+                    <Separator />
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="space-y-2">
+                            <Skeleton className="h-6 w-40" />
+                            <Skeleton className="h-4 w-56" />
+                        </div>
+                        <div className="space-y-2">
+                            <Skeleton className="h-6 w-40" />
+                            <Skeleton className="h-4 w-56" />
+                        </div>
+                    </div>
+                    <Separator />
+                    <div className="space-y-2">
+                        <Skeleton className="h-6 w-40" />
+                        <Skeleton className="h-4 w-full" />
+                        <Skeleton className="h-4 w-full" />
+                        <Skeleton className="h-4 w-3/4" />
+                    </div>
+                </CardContent>
+                <CardFooter>
+                    <Skeleton className="h-4 w-32" />
+                </CardFooter>
+            </Card>
         </div>
     )
 }
-
-export default SingleEventLoadingPage

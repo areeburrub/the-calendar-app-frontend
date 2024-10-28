@@ -11,6 +11,7 @@ import {
 import {Card, CardContent, CardFooter, CardHeader, CardTitle} from "@/components/ui/card"
 import {Badge} from "@/components/ui/badge"
 import {EventResponse} from "@/types/event.type";
+import Link from "next/link";
 
 export function EventCardComponent({event}: {
     event: EventResponse
@@ -26,7 +27,7 @@ export function EventCardComponent({event}: {
     return (
             <Card className="w-full">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-2xl font-bold">{event.title}</CardTitle>
+                <CardTitle className="text-2xl font-bold line-clamp-1">{event.title}</CardTitle>
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                         <Button variant="ghost" className="h-8 w-8 p-0">
@@ -35,10 +36,12 @@ export function EventCardComponent({event}: {
                         </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end">
-                        <DropdownMenuItem >
-                            <Edit className="mr-2 h-4 w-4"/>
-                            <span>Edit</span>
-                        </DropdownMenuItem>
+                        <Link href={`/events/${event.id}/update`} passHref={true}>
+                            <DropdownMenuItem >
+                                <Edit className="mr-2 h-4 w-4"/>
+                                <span>Edit</span>
+                            </DropdownMenuItem>
+                        </Link>
                     </DropdownMenuContent>
                 </DropdownMenu>
             </CardHeader>
@@ -47,7 +50,7 @@ export function EventCardComponent({event}: {
                 {event.fullDay ? (
                     <Badge>Full Day</Badge>
                 ) : (
-                    <p className="text-sm font-medium">
+                    <p className="text-sm font-medium py-0.5">
                         {formattedStartTime} - {formattedEndTime}
                     </p>
                 )}
