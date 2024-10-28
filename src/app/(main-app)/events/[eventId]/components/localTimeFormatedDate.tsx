@@ -18,7 +18,7 @@ export const CalendarElement = ({time}: { time:any }) => {
 }
 
 
-export const StartAndEndDate = ({startTime, endTime}:{startTime:any,endTime:any}) => {
+export const StartAndEndDate = ({startTime, endTime, isFullDay}:{startTime:any,endTime:any, isFullDay:any}) => {
 
     return(
         <>
@@ -28,7 +28,16 @@ export const StartAndEndDate = ({startTime, endTime}:{startTime:any,endTime:any}
                         <Calendar className="mr-2 h-4 w-4"/> Start Date & Time
                     </h2>
                     <p className="text-muted-foreground">
-                        {format(new Date(startTime), 'MMMM d, yyyy - h:mm a')}
+                        {
+                            isFullDay ?
+                                <span>
+                                    {format(new Date(startTime), 'MMMM d, yyyy')}
+                                </span>
+                                :
+                                <span>
+                                    {format(new Date(startTime), 'MMMM d, yyyy - h:mm a')}
+                                </span>
+                        }
                     </p>
                 </div>
                 <div className="space-y-2">
@@ -36,7 +45,16 @@ export const StartAndEndDate = ({startTime, endTime}:{startTime:any,endTime:any}
                         <Clock className="mr-2 h-4 w-4"/> End Date & Time
                     </h2>
                     <p className="text-muted-foreground">
-                        {format(new Date(endTime), 'MMMM d, yyyy - h:mm a')}
+                        {
+                            isFullDay ?
+                                <span>
+                                    {format(new Date(endTime), 'MMMM d, yyyy')}
+                                </span>
+                                :
+                                <span>
+                                    {format(new Date(endTime), 'MMMM d, yyyy - h:mm a')}
+                                </span>
+                        }
                     </p>
                 </div>
             </div>

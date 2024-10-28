@@ -18,7 +18,6 @@ export function EventCardComponent({event}: {
     event: EventResponse
 }) {
 
-
     const isUpdated = new Date(event.updatedAt) > new Date(event.createdAt)
     const timeAgo = formatDistanceToNow(isUpdated ? new Date(event.updatedAt) : new Date(event.createdAt), {addSuffix: true})
     const formattedDate = format(new Date(event.startTime), 'MMMM d, yyyy')
