@@ -44,8 +44,8 @@ export function EventForm({event, onSubmit}:{event?:EventResponse, onSubmit:(dat
             description: event?.description || '',
             startDate: event ? new Date(event.startTime) : new Date(),
             endDate: event ? new Date(event.endTime) : new Date(),
-            startTime: event ? format(new Date(event.startTime), 'hh:mm a') : '09:00 AM',
-            endTime: event ? format(new Date(event.endTime), 'hh:mm a') : '10:00 AM',
+            startTime: event ? format(new Date(event.startTime), 'hh:mm a') : '12:00 AM',
+            endTime: event ? format(new Date(event.endTime), 'hh:mm a') : '11:59 PM',
             fullDay: event?.fullDay || false,
         },
     });

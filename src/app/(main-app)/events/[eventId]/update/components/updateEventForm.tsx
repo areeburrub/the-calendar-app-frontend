@@ -9,6 +9,7 @@ import {toast} from "@/hooks/use-toast";
 import {useRouter} from "next/navigation";
 import {EventResponse} from "@/types/event.type";
 import {updateEvent} from "@/_actions/updateEvent";
+import {fromZonedTime} from "date-fns-tz";
 
 type UpdateEventFormValues = z.infer<typeof updateEventSchema>;
 
@@ -17,16 +18,36 @@ export const UpdateEventForm = ({event}:{event:EventResponse}) => {
 
     const router = useRouter()
 
+    const convertToUtc = (date: Date) => {
+        // Get the user's timezone
+        const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        // Convert the local time to UTC while preserving the intended time
+        return fromZonedTime(date, userTimeZone);
+    };
+
     const onSubmit = async (data: UpdateEventFormValues) => {
         try {
-            const startDateTime = parse(`${format(data.startDate, 'yyyy-MM-dd')} ${data.startTime}`, 'yyyy-MM-dd hh:mm a', new Date());
-            const endDateTime = parse(`${format(data.endDate, 'yyyy-MM-dd')} ${data.endTime}`, 'yyyy-MM-dd hh:mm a', new Date());
+            // Parse the local datetime strings to Date objects
+            const startDateTime = parse(
+                `${format(data.startDate, 'yyyy-MM-dd')} ${data.startTime}`,
+                'yyyy-MM-dd hh:mm a',
+                new Date()
+            );
+            const endDateTime = parse(
+                `${format(data.endDate, 'yyyy-MM-dd')} ${data.endTime}`,
+                'yyyy-MM-dd hh:mm a',
+                new Date()
+            );
+
+            // Convert local dates to UTC
+            const utcStartDateTime = convertToUtc(startDateTime);
+            const utcEndDateTime = convertToUtc(endDateTime);
 
             const eventData = {
                 title: data.title,
                 description: data.description,
-                startTime: startDateTime.toISOString(),
-                endTime: endDateTime.toISOString(),
+                startTime: utcStartDateTime.toISOString(),
+                endTime: utcEndDateTime.toISOString(),
                 fullDay: data.fullDay,
             };
 
