@@ -10,7 +10,7 @@ const EventsPage = async () => {
 
     return (
         <div className={"p-4"}>
-            <h1 className={"text-3xl font-bold py-2"}>Your Events</h1>
+            <h1 className={"text-3xl font-bold py-2"}>Your Upcoming Events</h1>
             {allEvents.length === 0 && (
                 <p className="text-center text-muted-foreground">No Events found.</p>
             )}
