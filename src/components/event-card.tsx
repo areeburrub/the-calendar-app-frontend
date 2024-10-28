@@ -1,3 +1,4 @@
+"use client"
 import {formatDistanceToNow, format} from 'date-fns'
 import {MoreVertical, Edit} from 'lucide-react'
 
